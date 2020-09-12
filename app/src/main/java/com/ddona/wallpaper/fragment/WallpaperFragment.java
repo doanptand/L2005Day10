@@ -2,6 +2,8 @@ package com.ddona.wallpaper.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +59,10 @@ public class WallpaperFragment extends Fragment implements OnWallpaperItemClickL
 
     @Override
     public void onWallpaperClick(int position) {
-        ((MainActivity)getActivity())
+        Transition exitTransition = TransitionInflater.from(getContext())
+                .inflateTransition(android.R.transition.explode);
+        setExitTransition(exitTransition);
+        ((MainActivity) getActivity())
                 .showDetailWallpaper(wallpapers.get(position));
     }
 }

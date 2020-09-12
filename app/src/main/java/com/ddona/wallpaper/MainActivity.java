@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fl_content,
                 new DetailWallpaperFragment(wallpaper));
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
