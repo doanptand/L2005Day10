@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/item_song"
+                android:icon="@drawable/ic_baseline_menu_24"
+                android:title="Song" />
+        <item
+                android:id="@+id/item_artist"
+                android:icon="@drawable/ic_baseline_menu_24"
+                android:title="Song" />
+        <item
+                android:id="@+id/item_album"
+                android:icon="@drawable/ic_baseline_menu_24"
+                android:title="Song" />
+    </group>
+    <item
+            android:id="@+id/item_about"
+            android:icon="@drawable/ic_baseline_menu_24"
+            android:title="Song" />
+
+</menu>
