@@ -1,5 +1,6 @@
 package com.ddona.wallpaper.fragment;
 
+import android.app.WallpaperManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.ddona.wallpaper.R;
 import com.ddona.wallpaper.model.Wallpaper;
+
+import java.io.IOException;
 
 public class DetailWallpaperFragment extends Fragment {
 
@@ -41,6 +44,20 @@ public class DetailWallpaperFragment extends Fragment {
                 .load(wallpaper.getImageId())
                 .placeholder(R.mipmap.ic_launcher)
                 .into(imgWallpaper);
+        view.findViewById(R.id.btn_set_as_wallpaper)
+                .setOnClickListener(v -> {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                WallpaperManager.getInstance(getContext())
+                                        .setResource(wallpaper.getImageId());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                });
         return view;
     }
 }
