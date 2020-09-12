@@ -12,14 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ddona.wallpaper.MainActivity;
 import com.ddona.wallpaper.R;
 import com.ddona.wallpaper.adapter.WallpaperAdapter;
+import com.ddona.wallpaper.callback.OnWallpaperItemClickListener;
 import com.ddona.wallpaper.model.Wallpaper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class WallpaperFragment extends Fragment {
+public class WallpaperFragment extends Fragment implements OnWallpaperItemClickListener {
     private RecyclerView rvWallpaper;
     private List<Wallpaper> wallpapers;
     private WallpaperAdapter adapter;
@@ -43,8 +45,7 @@ public class WallpaperFragment extends Fragment {
         wallpapers.add(new Wallpaper(R.drawable.november, "January", "Trung Doan"));
         wallpapers.add(new Wallpaper(R.drawable.december, "January", "Trung Doan"));
 
-        adapter = new WallpaperAdapter(wallpapers, getContext());
-
+        adapter = new WallpaperAdapter(wallpapers, getContext(), this);
         rvWallpaper = view.findViewById(R.id.rc_wallpaper);
         GridLayoutManager layoutManager =
                 new GridLayoutManager(getContext(), 2);
@@ -52,5 +53,11 @@ public class WallpaperFragment extends Fragment {
         rvWallpaper.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onWallpaperClick(int position) {
+        ((MainActivity)getActivity())
+                .showDetailWallpaper(wallpapers.get(position));
     }
 }
